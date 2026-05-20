@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇻🇳 Vietnam Fun Challenge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #1a1a2e;
+            background-image:
+                linear-gradient(135deg, rgba(218, 41, 28, 0.1) 0%, rgba(255, 205, 0, 0.1) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 205, 0, 0.03) 35px, rgba(255, 205, 0, 0.03) 70px);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative lotus flowers */
+        body::before,
+        body::after {
+            content: '🪷';
+            position: fixed;
+            font-size: 4em;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        body::before {
+            top: 5%;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        body::after {
+            bottom: 5%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+
+        .container {
+            background: linear-gradient(to bottom, #ffffff 0%, #fffef7 100%);
+            border-radius: 30px;
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.4),
+                0 0 0 1px rgba(255, 205, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        /* Vietnamese decorative border pattern */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg,
+                #DA291C 0%, #FFCD00 25%, #DA291C 50%, #FFCD00 75%, #DA291C 100%);
+            z-index: 2;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg,
+                #DA291C 0%, #FFCD00 25%, #DA291C 50%, #FFCD00 75%, #DA291C 100%);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #DA291C 0%, #c41e14 50%, #DA291C 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Decorative pattern overlay on header */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(255, 205, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 205, 0, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Bamboo decorative elements */
+        .header::after {
+            content: '🎋';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 3em;
+            opacity: 0.2;
+            transform: rotate(15deg);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.3),
+                0 0 20px rgba(255, 205, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 50px;
+            position: relative;
+        }
+
+        /* Subtle decorative corner elements */
+        .content::before,
+        .content::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, rgba(218, 41, 28, 0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+            pointer-events: none;
+        }
+
+        .content::before {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid rgba(255, 205, 0, 0.2);
+            border-left: 2px solid rgba(255, 205, 0, 0.2);
+        }
+
+        .content::after {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid rgba(255, 205, 0, 0.2);
+            border-right: 2px solid rgba(255, 205, 0, 0.2);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .start-screen {
+            text-align: center;
+        }
+
+        .start-screen h2 {
+            font-family: 'Playfair Display', serif;
+            color: #DA291C;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .start-screen h2::after {
+            content: '🪷';
+            display: block;
+            font-size: 0.8em;
+            margin-top: 10px;
+            opacity: 0.6;
+        }
+
+        .start-screen ul {
+            text-align: left;
+            max-width: 550px;
+            margin: 40px auto;
+            line-height: 2.2;
+            background: linear-gradient(to right, rgba(255, 205, 0, 0.05), transparent);
+            padding: 30px 30px 30px 50px;
+            border-radius: 15px;
+            border-left: 4px solid #FFCD00;
+        }
+
+        .start-screen li {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #2d2d2d;
+        }
+
+        .start-screen li strong {
+            color: #DA291C;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #DA291C 0%, #c41e14 50%, #DA291C 100%);
+            background-size: 200% 200%;
+            color: white;
+            border: 2px solid rgba(255, 205, 0, 0.3);
+            padding: 18px 50px;
+            font-size: 1.25em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow:
+                0 8px 20px rgba(218, 41, 28, 0.3),
+                0 0 0 0 rgba(255, 205, 0, 0.4);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 205, 0, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 12px 30px rgba(218, 41, 28, 0.4),
+                0 0 0 8px rgba(255, 205, 0, 0.2);
+            background-position: 100% 50%;
+            border-color: rgba(255, 205, 0, 0.6);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-header {
+            background: linear-gradient(to right, rgba(255, 205, 0, 0.08), rgba(218, 41, 28, 0.05));
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 205, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-header::before {
+            content: '🌸';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.15;
+        }
+
+        .question-number {
+            color: #DA291C;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            background: rgba(255, 205, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #2d2d2d;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            gap: 18px;
+        }
+
+        .option {
+            background: linear-gradient(to right, #ffffff, #fffef7);
+            border: 2px solid #e0e0e0;
+            padding: 25px 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #2d2d2d;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(to bottom, #DA291C, #FFCD00);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .option:hover {
+            background: linear-gradient(to right, rgba(255, 205, 0, 0.1), rgba(218, 41, 28, 0.05));
+            border-color: #DA291C;
+            transform: translateX(8px);
+            box-shadow: 0 5px 15px rgba(218, 41, 28, 0.2);
+        }
+
+        .option:hover::before {
+            transform: scaleY(1);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #DA291C 0%, #c41e14 100%);
+            color: white;
+            border-color: #DA291C;
+            box-shadow: 0 5px 20px rgba(218, 41, 28, 0.3);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-color: #28a745;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
+            animation: correctPulse 0.6s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .option.wrong {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border-color: #dc3545;
+            box-shadow: 0 5px 20px rgba(220, 53, 69, 0.3);
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .food-frenzy-input {
+            width: 100%;
+            padding: 20px 25px;
+            font-size: 1.25em;
+            border: 2px solid rgba(255, 205, 0, 0.3);
+            border-radius: 15px;
+            margin: 25px 0;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            background: linear-gradient(to right, #ffffff, #fffef7);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .food-frenzy-input:focus {
+            outline: none;
+            border-color: #DA291C;
+            box-shadow: 0 5px 20px rgba(218, 41, 28, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .timer {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            font-weight: bold;
+            color: #DA291C;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(218, 41, 28, 0.2);
+            position: relative;
+        }
+
+        .timer::before {
+            content: '⏱️';
+            display: block;
+            font-size: 0.6em;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        .timer.warning {
+            color: #dc3545;
+            animation: pulse 0.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 2px 2px 4px rgba(220, 53, 69, 0.3);
+            }
+            50% {
+                transform: scale(1.1);
+                text-shadow: 4px 4px 12px rgba(220, 53, 69, 0.6);
+            }
+        }
+
+        .explanation {
+            background: linear-gradient(to right, rgba(255, 243, 205, 0.6), rgba(255, 205, 0, 0.1));
+            border-left: 5px solid #FFCD00;
+            padding: 20px 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .explanation strong {
+            color: #c49000;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            background: rgba(233, 236, 239, 0.5);
+            height: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #DA291C 0%, #FFCD00 50%, #DA291C 100%);
+            background-size: 200% 100%;
+            height: 100%;
+            transition: width 0.6s ease;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .results-screen {
+            text-align: center;
+        }
+
+        .results-screen h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #DA291C;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #DA291C 0%, #FFCD00 50%, #DA291C 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 2px 2px 10px rgba(218, 41, 28, 0.2);
+        }
+
+        .prize-message {
+            font-size: 1.4em;
+            color: #2d2d2d;
+            font-weight: 600;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(to right, rgba(255, 205, 0, 0.15), rgba(218, 41, 28, 0.08));
+            border-radius: 20px;
+            border: 2px solid rgba(255, 205, 0, 0.3);
+            line-height: 1.6;
+        }
+
+        .emoji-large {
+            font-size: 5em;
+            margin: 30px 0;
+            animation: bounce 1s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .food-list {
+            background: linear-gradient(to right, rgba(255, 205, 0, 0.08), rgba(218, 41, 28, 0.05));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border: 2px solid rgba(255, 205, 0, 0.2);
+        }
+
+        .food-list h3 {
+            font-family: 'Playfair Display', serif;
+            color: #DA291C;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #DA291C 0%, #c41e14 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            margin: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(218, 41, 28, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .food-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(218, 41, 28, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            border-color: rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+            border-color: rgba(108, 117, 125, 0.5);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 25px;
+            }
+
+            .question-text {
+                font-size: 1.3em;
+            }
+
+            .score-display {
+                font-size: 3.5em;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Loading animation for initial load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇻🇳 Vietnam Fun Challenge</h1>
+            <p>How well do you know Vietnam?</p>
+        </div>
+
+        <div class="content">
+            <!-- Start Screen -->
+            <div class="screen active" id="start-screen">
+                <div class="start-screen">
+                    <h2>Ready to discover Vietnam?</h2>
+                    <ul>
+                        <li>🍜 <strong>Food Frenzy:</strong> 30 seconds to name Vietnamese dishes!</li>
+                        <li>🎭 <strong>Emoji Decoders:</strong> Guess iconic foods from emojis</li>
+                        <li>🤯 <strong>Surprising Facts:</strong> True or False challenges</li>
+                        <li>🏙️ <strong>Modern Vietnam:</strong> Young, dynamic, and digital</li>
+                        <li>🌏 <strong>Culture & History:</strong> Traditional meets contemporary</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: #666; font-size: 1.1em;">
+                        <strong>10 fun questions</strong> · 3-5 minutes · Everyone wins a snack! 🎁
+                    </p>
+                    <button class="btn" onclick="startQuiz()">Begin Your Journey! 🚀</button>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div class="screen" id="quiz-screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress"></div>
+                </div>
+
+                <div id="question-area"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prev-btn" style="display: none;">← Previous</button>
+                    <button class="btn" onclick="nextQuestion()" id="next-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="screen" id="results-screen">
+                <div class="results-screen">
+                    <h2>🎊 Challenge Complete!</h2>
+                    <div class="score-display" id="final-score">0/0</div>
+                    <div class="emoji-large" id="result-emoji">🎉</div>
+                    <div class="prize-message" id="prize-message"></div>
+                    <div id="food-frenzy-results"></div>
+                    <button class="btn" onclick="resetQuiz()">Try Again! 🔄</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                type: 'food-frenzy',
+                question: 'Food Frenzy Challenge! 🍜',
+                description: 'Type as many Vietnamese foods as you can think of (separate with commas)',
+                time: 30,
+                correctAnswers: ['pho', 'phở', 'banh mi', 'bánh mì', 'spring rolls', 'goi cuon', 'gỏi cuốn', 'bun', 'bún', 'banh xeo', 'bánh xèo', 'coffee', 'ca phe', 'cà phê', 'com tam', 'cơm tấm', 'che', 'chè', 'cao lau', 'cao lầu', 'mi quang', 'mì quảng', 'hu tieu', 'hủ tiếu', 'vermicelli', 'nem', 'cha gio', 'chả giò', 'bun cha', 'bún chả', 'xoi', 'xôi']
+            },
+            {
+                type: 'emoji',
+                question: 'Emoji Decoder: 🍜🐄🌿',
+                options: ['Ramen', 'Phở (Vietnamese noodle soup)', 'Thai soup', 'Udon'],
+                correct: 1,
+                explanation: 'Phở is the iconic Vietnamese beef noodle soup with fresh herbs! 🇻🇳'
+            },
+            {
+                type: 'emoji',
+                question: 'Emoji Decoder: 🥖🥩🥕🌶️',
+                options: ['Hot dog', 'Bánh mì (Vietnamese sandwich)', 'Subway sandwich', 'Burger'],
+                correct: 1,
+                explanation: 'Bánh mì is a crispy baguette sandwich - a delicious blend of French colonial influence and Vietnamese flavors!'
+            },
+            {
+                type: 'true-false',
+                question: 'TRUE or FALSE: Vietnamese people commonly wear silk pajamas in public as everyday fashion',
+                options: ['True', 'False'],
+                correct: 0,
+                explanation: '100% TRUE! 🛏️ Silk and cotton pajamas are totally normal streetwear in Vietnam. Comfort over everything - why be uncomfortable when you don\'t have to be?'
+            },
+            {
+                type: 'true-false',
+                question: 'TRUE or FALSE: Egg coffee (cà phê trứng) is made with whipped egg yolk on top',
+                options: ['True', 'False'],
+                correct: 0,
+                explanation: 'TRUE! 🥚☕ Invented in Hanoi in the 1940s when milk was scarce. Whipped egg yolk creates a creamy, custard-like foam. Sounds weird, tastes AMAZING!'
+            },
+            {
+                type: 'multiple-choice',
+                question: 'Vietnam has a younger population than most countries. What percentage is under 35 years old?',
+                options: ['30%', '45%', '60%', '75%'],
+                correct: 2,
+                explanation: '60%! 🎉 Vietnam has a super young, dynamic population. Median age is only 32 years old - making it one of the youngest populations in Asia!'
+            },
+            {
+                type: 'multiple-choice',
+                question: 'Which social media platform is MOST popular in Vietnam?',
+                options: ['Instagram', 'Facebook', 'Twitter/X', 'LinkedIn'],
+                correct: 1,
+                explanation: 'Facebook! 📱 Vietnam has 70+ million Facebook users - one of the highest rates globally. TikTok is also HUGE with younger Vietnamese!'
+            },
+            {
+                type: 'multiple-choice',
+                question: 'Vietnam is shaped like which letter?',
+                options: ['C', 'S', 'L', 'V'],
+                correct: 1,
+                explanation: 'S-shape! 🌏 Vietnam stretches over 1,000 miles (1,650km) from north to south but is only 30 miles (50km) wide at its narrowest point!'
+            },
+            {
+                type: 'multiple-choice',
+                question: 'What\'s unique about Vietnamese iced coffee compared to Western iced coffee?',
+                options: ['It uses tea instead of coffee', 'It uses condensed milk instead of regular milk', 'It\'s served hot', 'It has ice cream in it'],
+                correct: 1,
+                explanation: 'Condensed milk! 🥛 During French colonial times, fresh milk was hard to keep refrigerated. Condensed milk solved that - and created an iconic taste!'
+            },
+            {
+                type: 'multiple-choice',
+                question: 'The word "phở" (Vietnamese noodle soup) likely came from which language?',
+                options: ['Chinese', 'French', 'Thai', 'Portuguese'],
+                correct: 1,
+                explanation: 'French! 🇫🇷 Many linguists believe "phở" evolved from "pot-au-feu" (French beef stew) during colonial times. Phở blends French and Vietnamese culinary traditions!'
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        let foodFrenzyList = [];
+        let foodFrenzyTimer;
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.remove('active');
+            document.getElementById('quiz-screen').classList.add('active');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            const questionArea = document.getElementById('question-area');
+            const progress = document.getElementById('progress');
+
+            progress.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+
+            let html = '<div class="question-container">';
+            html += `<div class="question-header">`;
+            html += `<div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>`;
+            html += `<div class="question-text">${q.question}</div>`;
+            if (q.description) {
+                html += `<p style="margin-top: 10px; color: #666;">${q.description}</p>`;
+            }
+            html += `</div>`;
+
+            if (q.type === 'food-frenzy') {
+                html += `<div class="timer" id="timer">30</div>`;
+                html += `<input type="text" class="food-frenzy-input" id="food-input" placeholder="e.g., phở, bánh mì, spring rolls..." />`;
+                html += `<p style="text-align: center; color: #666;">Press "Next" when timer runs out or you're done!</p>`;
+            } else {
+                html += '<div class="options">';
+                q.options.forEach((option, index) => {
+                    html += `<div class="option" onclick="selectOption(${index})" id="option-${index}">`;
+                    html += option;
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+
+            html += `<div class="explanation" id="explanation"><strong>📚 Fun Fact:</strong> <span id="explanation-text"></span></div>`;
+            html += '</div>';
+
+            questionArea.innerHTML = html;
+
+            // Show/hide navigation buttons
+            document.getElementById('prev-btn').style.display = currentQuestion > 0 ? 'block' : 'none';
+
+            // Start timer for food frenzy
+            if (q.type === 'food-frenzy') {
+                startFoodFrenzyTimer();
+            }
+
+            // If we've already answered this question, show the selected answer
+            if (userAnswers[currentQuestion] !== undefined) {
+                if (q.type !== 'food-frenzy') {
+                    selectOption(userAnswers[currentQuestion], true);
+                }
+            }
+        }
+
+        function startFoodFrenzyTimer() {
+            let timeLeft = 30;
+            const timerEl = document.getElementById('timer');
+
+            foodFrenzyTimer = setInterval(() => {
+                timeLeft--;
+                timerEl.textContent = timeLeft;
+
+                if (timeLeft <= 5) {
+                    timerEl.classList.add('warning');
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(foodFrenzyTimer);
+                    timerEl.textContent = "Time's up!";
+                    document.getElementById('food-input').disabled = true;
+                }
+            }, 1000);
+        }
+
+        function selectOption(index, skipAnimation = false) {
+            const q = questions[currentQuestion];
+
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'wrong');
+            });
+
+            // Mark selected option
+            const selectedOption = document.getElementById(`option-${index}`);
+            selectedOption.classList.add('selected');
+
+            // Store answer
+            userAnswers[currentQuestion] = index;
+
+            // Show if correct/wrong and explanation
+            if (!skipAnimation) {
+                setTimeout(() => {
+                    if (index === q.correct) {
+                        selectedOption.classList.remove('selected');
+                        selectedOption.classList.add('correct');
+                    } else {
+                        selectedOption.classList.remove('selected');
+                        selectedOption.classList.add('wrong');
+                        document.getElementById(`option-${q.correct}`).classList.add('correct');
+                    }
+
+                    document.getElementById('explanation-text').textContent = q.explanation;
+                    document.getElementById('explanation').classList.add('show');
+                }, 300);
+            }
+        }
+
+        function nextQuestion() {
+            const q = questions[currentQuestion];
+
+            // Handle food frenzy scoring
+            if (q.type === 'food-frenzy') {
+                clearInterval(foodFrenzyTimer);
+                const input = document.getElementById('food-input').value.toLowerCase();
+                const foods = input.split(',').map(f => f.trim()).filter(f => f.length > 0);
+
+                foodFrenzyList = foods;
+                let matches = 0;
+                foods.forEach(food => {
+                    if (q.correctAnswers.some(correct => food.includes(correct) || correct.includes(food))) {
+                        matches++;
+                    }
+                });
+
+                score += matches;
+                userAnswers[currentQuestion] = matches;
+            } else if (userAnswers[currentQuestion] === questions[currentQuestion].correct) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-screen').classList.remove('active');
+            document.getElementById('results-screen').classList.add('active');
+
+            const totalQuestions = questions.length;
+            const foodFrenzyScore = userAnswers[0]; // Food frenzy is first question
+            const regularScore = score - foodFrenzyScore;
+
+            document.getElementById('final-score').textContent = `${score}/${totalQuestions + foodFrenzyScore}`;
+
+            let emoji, message;
+            if (score >= totalQuestions * 0.8) {
+                emoji = '🏆';
+                message = '🎉 LEGENDARY STATUS! You\'re basically Vietnamese! Choose ANY premium snack!';
+            } else if (score >= totalQuestions * 0.6) {
+                emoji = '⭐';
+                message = '🌟 Amazing! You know your Vietnam! Pick a premium Vietnamese snack!';
+            } else if (score >= totalQuestions * 0.4) {
+                emoji = '😊';
+                message = '👏 Great job! You learned a lot today! Choose a delicious snack!';
+            } else {
+                emoji = '🎈';
+                message = '💪 Nice try! Now you know more about Vietnam! Grab a tasty treat!';
+            }
+
+            document.getElementById('result-emoji').textContent = emoji;
+            document.getElementById('prize-message').innerHTML = message;
+
+            // Show food frenzy results
+            if (foodFrenzyList.length > 0) {
+                let foodHTML = '<div class="food-list">';
+                foodHTML += `<h3>🍜 You named ${foodFrenzyList.length} foods! (${foodFrenzyScore} Vietnamese dishes)</h3>`;
+                foodFrenzyList.forEach(food => {
+                    foodHTML += `<span class="food-tag">${food}</span>`;
+                });
+                foodHTML += '</div>';
+                document.getElementById('food-frenzy-results').innerHTML = foodHTML;
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            foodFrenzyList = [];
+
+            document.getElementById('results-screen').classList.remove('active');
+            document.getElementById('start-screen').classList.add('active');
+        }
+    </script>
+</body>
+</html>
